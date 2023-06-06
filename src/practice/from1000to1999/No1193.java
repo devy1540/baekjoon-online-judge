@@ -1,4 +1,4 @@
-package practice;
+package practice.from1000to1999;
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;

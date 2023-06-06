@@ -1,4 +1,4 @@
-package practice;
+package practice.from25000to25999;
 
 import java.util.*;
 import java.io.*;

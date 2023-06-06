@@ -1,22 +1,17 @@
-package practice;
+package practice.from2000to2999;
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class No2292 {
+public class No2903 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
-        int distance = 1;
-        int range = 1;
+        int x = 2 + (int) Math.pow(2, n) - 1;
 
-        while(range < n) {
-            range += (6 * distance);
-            distance++;
-        }
-        bw.write(String.valueOf(distance));
+        bw.write(String.valueOf(x * x));
 
         bw.flush();
         bw.close();
