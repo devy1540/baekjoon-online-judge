@@ -14,14 +14,8 @@ public class No2869 {
         int b = Integer.parseInt(input[1]);
         int v = Integer.parseInt(input[2]);
 
-        int day = 0;
-        int distance = 0;
-
-        while(distance < v) {
-            distance = distance + a - b;
-            day++;
-        }
-
+        double x =  (double) (v - b) / (a- b);
+        int day = (int) Math.ceil(x);
 
         bw.write(String.valueOf(day));
 
