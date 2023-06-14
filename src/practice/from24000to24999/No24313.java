@@ -17,7 +17,11 @@ public class No24313 {
         int c = Integer.parseInt(br.readLine());
         int n0 = Integer.parseInt(br.readLine());
 
-
+        if(a1 * n0 + a0 <= c * n0 && a1 <= c) {
+            bw.write(String.valueOf(1));
+        } else {
+            bw.write(String.valueOf(0));
+        }
 
         bw.flush();
         bw.close();
