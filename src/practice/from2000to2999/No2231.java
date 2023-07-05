@@ -10,8 +10,24 @@ public class No2231 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
+        int result = 0;
+        for(int i = 1; i < n; i++) {
+            int tmp = i;
+            int sum = 0;
 
-        bw.write(String.valueOf(n));
+            while(tmp != 0) {
+                sum += tmp % 10;
+                tmp /= 10;
+            }
+
+            if(i + sum == n) {
+                result = i;
+                break;
+            }
+        }
+
+
+        bw.write(String.valueOf(result));
 
         bw.flush();
         bw.close();
