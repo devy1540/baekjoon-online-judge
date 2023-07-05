@@ -27,10 +27,8 @@ public class No2798 {
                         result = tmp;
                         break end;
                     }
-                    if(tmp >= result && tmp < m) {
+                    if(tmp >= result && tmp <= m) {
                         result = tmp;
-                    } else {
-                        break;
                     }
                 }
             }
