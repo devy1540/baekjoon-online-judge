@@ -9,10 +9,40 @@ public class No18870 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
+        int rank = 0;
 
+        int n = Integer.parseInt(br.readLine());
+        List<Long> origin = Arrays.stream(br.readLine().split(" "))
+                .mapToLong(Long::parseLong)
+                .boxed()
+                .collect(Collectors.toList());
+
+        Map<Long, Integer> map = origin.stream()
 
         bw.flush();
         bw.close();
         br.close();
     }
+//    public static void main(String[] args) throws Exception {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//        StringBuilder sb = new StringBuilder();
+//        int n = Integer.parseInt(br.readLine());
+//        List<Long> origin = Arrays.stream(br.readLine().split(" "))
+//                .mapToLong(Long::parseLong)
+//                .boxed()
+//                .collect(Collectors.toList());
+//
+//        List<Long> arr = new ArrayList<>(origin).stream().sorted().distinct().collect(Collectors.toList());
+//
+//        for(long i : origin) {
+//            sb.append(String.format("%d ", arr.indexOf(i)));
+//        }
+//
+//        bw.write(sb.toString());
+//
+//        bw.flush();
+//        bw.close();
+//        br.close();
+//    }
 }
