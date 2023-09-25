@@ -17,7 +17,22 @@ public class No18870 {
                 .boxed()
                 .collect(Collectors.toList());
 
-        Map<Long, Integer> map = origin.stream()
+        List<Long> sorted = new ArrayList<>(origin).stream().sorted().distinct().collect(Collectors.toList());
+
+        Map<Long, Integer> map = new HashMap<>();
+
+        for(long x : sorted) {
+            if(map.containsKey(x)) {
+                map.put(x, rank);
+            } else {
+                map.put(x, rank++);
+            }
+        }
+
+        for(long x : origin) {
+            bw.write(String.format("%d ", map.get(x)));
+        }
+
 
         bw.flush();
         bw.close();
