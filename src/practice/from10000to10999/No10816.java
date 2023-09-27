@@ -11,23 +11,23 @@ public class No10816 {
         int n = Integer.parseInt(br.readLine());
         long[] list1 = Arrays.stream(br.readLine().split(" ")).mapToLong(Long::parseLong).toArray();
         int m = Integer.parseInt(br.readLine());
+        long[] list2 = Arrays.stream(br.readLine().split(" ")).mapToLong(Long::parseLong).toArray();
+
+        Map<Long, Integer> map = Arrays.stream(list2)
+                        .boxed()
+                        .collect(Collectors.toMap(k -> k, v -> 0, (b, a) -> b, LinkedHashMap::new));
+
         StringBuilder sb = new StringBuilder();
 
-        Map<Long, Integer> map = Arrays.stream(br.readLine().split(" "))
-                        .mapToLong(Long::parseLong)
-                        .boxed()
-                        .collect(Collectors.toMap(k -> k, v -> 0, (e1, e2) -> e1, LinkedHashMap::new));
-
-        for(long l : list1) {
-            if(map.containsKey(l)) {
-                int tmp = map.get(l);
-                map.put(l, tmp + 1);
-            }
+        for(long key : list1) {
+            map.computeIfPresent(key, (l, i) -> i + 1);
         }
 
-        map.forEach((aLong, integer) -> sb.append(integer).append(" "));
+        for(long l : list2) {
+            sb.append(map.get(l)).append(" ");
+        }
 
-        bw.write(sb.toString());
+        bw.write(sb.toString().trim());
 
         bw.flush();
         bw.close();
