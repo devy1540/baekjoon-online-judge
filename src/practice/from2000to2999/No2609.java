@@ -11,21 +11,22 @@ public class No2609 {
 
         int[] i = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        //최대공약수
-        int g = 1;
-        //최소공배수
-        int l = 1;
+        int i1 = i[0];
+        int i2 = i[1];
 
-        int div = 2;
         while(true) {
-            if(i[0] % div == 0 && i[1] % div == 0) {
-                g *= div;
-                i[0] /= div;
-                i[1] /= div;
+            int r = i1 % i2;
+            if(r == 0) {
+                sb.append(i2).append("\n");
+                sb.append(Arrays.stream(i).reduce(1, (a, b) -> a * b) / i2);
+                break;
+            } else {
+                i1 = i2;
+                i2 = r;
             }
         }
 
-
+        bw.write(sb.toString());
         bw.flush();
         bw.close();
         br.close();
