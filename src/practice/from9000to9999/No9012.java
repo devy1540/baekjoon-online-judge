@@ -12,18 +12,23 @@ public class No9012 {
         int n = Integer.parseInt(br.readLine());
 
         for(int i = 0; i < n; i++) {
-            String s = br.readLine();
-            if(s.startsWith(")")) {
-                sb.append("no");
-            } else {
-                long x = Arrays.stream(s.split("")).filter(a -> a.equals("(")).count();
-                long y = Arrays.stream(s.split("")).filter(a -> a.equals(")")).count();
+            String[] s = br.readLine().split("");
 
-                if(x == y) {
-                    sb.append("yes");
+            Stack<String> stack = new Stack<>();
+            for(String x : s) {
+                if(x.equals("(")) {
+                    stack.push(x);
+                } else if(stack.isEmpty()) {
+                    stack.push(x);
+                    break;
                 } else {
-                    sb.append("no");
+                    stack.pop();
                 }
+            }
+            if(!stack.isEmpty()) {
+                sb.append("NO");
+            } else {
+                sb.append("YES");
             }
             sb.append("\n");
         }
