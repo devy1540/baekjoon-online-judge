@@ -10,48 +10,29 @@ public class No7568 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
 
-        int n  = Integer.parseInt(br.readLine());
-        List<Person> list = new ArrayList<>();
+        int n = Integer.parseInt(br.readLine());
+        int[][] arr = new int[n][2];
 
         for(int i = 0; i < n; i++) {
-            String[] s = br.readLine().split(" ");
-            Person p = new Person(Integer.parseInt(s[0]),  Integer.parseInt(s[1]));
-            list.add(p);
+            int[] tmp = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            arr[i] = tmp;
         }
 
-        System.out.println(list);
+        for(int i = 0; i < n; i++) {
+            int rank = 1;
+            for(int j = 0; j < n; j++) {
+                if(i == j) continue;
+                if(arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1]) {
+                    rank++;
+                }
+            }
 
-        list = list.stream().sorted((o1, o2) -> o2.weight - o1.weight).collect(Collectors.toList());
-
-        System.out.println(list);
+            sb.append(rank).append(" ");
+        }
 
         bw.write(sb.toString());
         bw.flush();
         bw.close();
         bw.close();
-    }
-    public static class Person {
-        int weight;
-
-        int height;
-
-
-        public Person(int weight, int height) {
-            this.weight = weight;
-            this.height = height;
-        }
-
-        @Override
-        public String toString() {
-            return new StringBuilder()
-                    .append("{")
-                    .append("w: ")
-                    .append(weight)
-                    .append(", ")
-                    .append("h: ")
-                    .append(height)
-                    .append("}")
-                    .toString();
-        }
     }
 }
