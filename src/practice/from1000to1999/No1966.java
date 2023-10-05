@@ -12,17 +12,42 @@ public class No1966 {
 
         int t = Integer.parseInt(br.readLine());
         for(int i = 0; i < t; i++) {
-            PriorityQueue<Map<Integer, Integer>> queue = new PriorityQueue<>();
+            Deque<List<Integer>> queue = new ArrayDeque<>();
             String[] s = br.readLine().split(" ");
-            //문서의 갯수
             int n = Integer.parseInt(s[0]);
-            // Queue순서
             int m = Integer.parseInt(s[1]);
             int[] priority = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
+            for(int j = 0; j < n; j++) {
+                List<Integer> tmp = new ArrayList<>();
+                tmp.add(j);
+                tmp.add(priority[j]);
 
-
-
+                queue.add(tmp);
+            }
+            int result = 1;
+            all:
+            while(true) {
+                List<Integer> tmp = queue.peekFirst();
+                if(queue.isEmpty()) {
+                    sb.append(result);
+                    break;
+                } else {
+                    for(List<Integer> e : queue) {
+                        if(tmp.get(1) <= e.get(1)) {
+                            queue.addLast(tmp);
+                        } else {
+                            if(tmp.get(0) != m) {
+                                result++;
+                            } else {
+                                sb.append(result);
+                                break all;
+                            }
+                        }
+                    }
+                }
+            }
+            sb.append("\n");
         }
 
         bw.write(sb.toString());
