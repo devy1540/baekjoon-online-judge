@@ -12,38 +12,28 @@ public class No1966 {
 
         int t = Integer.parseInt(br.readLine());
         for(int i = 0; i < t; i++) {
-            Deque<List<Integer>> queue = new ArrayDeque<>();
+            Queue<int[]> queue = new LinkedList<>();
             String[] s = br.readLine().split(" ");
             int n = Integer.parseInt(s[0]);
             int m = Integer.parseInt(s[1]);
             int[] priority = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
             for(int j = 0; j < n; j++) {
-                List<Integer> tmp = new ArrayList<>();
-                tmp.add(j);
-                tmp.add(priority[j]);
-
-                queue.add(tmp);
+                queue.add(new int[]{j, priority[j]});
             }
-            int result = 1;
-            all:
+            int result = 0;
+
             while(true) {
-                List<Integer> tmp = queue.peekFirst();
-                if(queue.isEmpty()) {
-                    sb.append(result);
-                    break;
-                } else {
-                    for(List<Integer> e : queue) {
-                        if(tmp.get(1) <= e.get(1)) {
-                            queue.addLast(tmp);
-                        } else {
-                            if(tmp.get(0) != m) {
-                                result++;
-                            } else {
-                                sb.append(result);
-                                break all;
-                            }
-                        }
+                int[] tmp = queue.poll();
+                if(queue.stream().anyMatch(il -> tmp[1] <= il[1])) {
+                    queue.offer(tmp);
+                    int[] tmp2 = queue.stream().filter(il -> tmp[1] <= il[1]).findFirst().orElseThrow();
+                    if(tmp2[0] == m) {
+                        sb.append(result);
+                        break;
+                    } else {
+                        queue.remove(tmp2);
+                        result++;
                     }
                 }
             }
