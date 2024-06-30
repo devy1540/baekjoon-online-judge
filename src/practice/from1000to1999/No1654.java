@@ -7,7 +7,6 @@ public class No1654 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuilder sb = new StringBuilder();
 
         String[] s = br.readLine().split(" ");
 
@@ -18,15 +17,30 @@ public class No1654 {
 
         int[] arr = new int[k];
 
-
         for(int i = 0; i < k; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
 
-        sb.append(Arrays.toString(arr));
+        Arrays.sort(arr);
+        long min = 1;
+        long max = arr[arr.length - 1];
+        long result = 0;
+
+        while(min <= max) {
+            long mid = (min + max) / 2;
+            long count = Arrays.stream(arr).map(x -> x / (int) mid).sum();
+
+            if(count >= n) {
+                result = mid;
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
+        }
 
 
-        bw.write(sb.toString());
+        bw.write(String.valueOf(result));
+
         bw.flush();
         bw.close();
         br.close();

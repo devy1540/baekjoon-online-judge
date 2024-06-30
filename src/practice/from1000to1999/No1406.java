@@ -28,7 +28,14 @@ public class No1406 {
             if(in.startsWith("D")) {
                 if(cursor < n + 1) cursor++;
             }
+            if(in.startsWith("B")) {
+                if(cursor > 0) {
+                    list.remove(cursor - 1);
+                }
+            }
         }
+
+        for(String s : list) bw.write(s);
 
         bw.flush();
         bw.close();
